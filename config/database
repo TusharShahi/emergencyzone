@@ -1,0 +1,6 @@
+module.exports =
+{
+	
+
+	'url' : 'mongodb://tusharshahi:tusharadmin@ds141284.mlab.com:41284/techtatva'
+}
