@@ -177,7 +177,8 @@ module.exports = function(passport) {
                 newUser.points = 0;
                 newUser.phonenumber = req.body.phonenumber;
                 newUser.level = 1;
-         // save the user
+                newUser.scenario = 1;
+             // save the user
                 newUser.save(function(err) {
                     if (err)
                         throw err;
