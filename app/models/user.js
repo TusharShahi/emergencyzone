@@ -13,7 +13,8 @@ var userSchema = mongoose.Schema({
     registrationnumber : Number,
     points : Number,
   phonenumber: Number,
-   level : Number
+   level : Number,
+   scenario : Number
 });
 
 // methods ======================

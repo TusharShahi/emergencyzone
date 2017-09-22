@@ -24,12 +24,12 @@
 
 	<form action="/signup" method="post" onsubmit="return signupvalidate()">
 
-		<label>Name</label> <input type="text" name="username"> <br>
-		<label>Delegate Card Number</label><input type="text" name="delegatecard"> <br>
-		<label>Phone Number</label><input type="text" name="phonenumber"> <br> 
-		<label>Registration Number</label><input type="text" name="registrationnumber">
-		<label>Password</label><input type="password" name="password" id="p1"> <br>
-		<label>Confirm Password</label><input type="password" name="passwordconfirm" id="p2"> <br> 
+		<label>Name</label> <input type="text" name="username" required /> <br>
+		<label>Delegate Card Number</label><input type="text" name="delegatecard" required /> <br>
+		<label>Phone Number</label><input type="text" name="phonenumber" required /> <br> 
+		<label>Registration Number</label><input type="text" name="registrationnumber" required />
+		<label>Password</label><input type="password" name="password" id="p1" required /> <br>
+		<label>Confirm Password</label><input type="password" name="passwordconfirm" id="p2" required /> <br> 
         <input type="submit" class="btn btn-warning btn-lg">
     
 	</form>

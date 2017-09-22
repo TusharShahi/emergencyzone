@@ -4,10 +4,40 @@
 	<title>GAME</title>
 </head>
 <body>
+<h4>SCENARIO</h4>
+<p><%= user.scenario %></p>
 
+<div>
+<p><% if(flag){  %>
+<p><%= flag %>
+points have been awarded</p>
+<% } %>
+</div>
+<br>
+<br>
+<h2>Scenario Statement</h2>
+<p><%= scenario %></p>
+<br>
+<br>
+<br>
+<h3>USER LEVEL</h3>
 <p><%= user.level %></p>
-<p><%= question %></p>
+<br>
+<br>
+<h3>USER POINTS</h3>
+<p><%= user.points %></p>
+<form action="/submitanswer" method="post">
 <p><%= question.statement %></p>
+<label>Answer</label>
+<br>
+  <input type="radio" name="submittedanswer" value="a"><%= question.options[0] %><br>
+  <input type="radio" name="submittedanswer" value="b"><%= question.options[1] %><br>
+  <input type="radio" name="submittedanswer" value="c"><%= question.options[2] %><br>
+  <input type="radio" name="submittedanswer" value="d"><%= question.options[3] %><br>
+  <br><br>
+<input type="submit" name="submitanswer">
+
+</form>
 
 </body>
 </html>
