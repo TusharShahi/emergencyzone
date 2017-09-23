@@ -179,8 +179,21 @@ module.exports = function(app, passport) {
 // ===================== 
 
 app.get('/leaderboard', function(req, res) {
-      res.render('leaderboard.ejs'); 
-    });
+
+    User.find().sort({points : 1}).limit(20).exec(function(err,docs)
+                                { 
+            console.log(docs);
+            docs.forEach(function(user)
+            {
+                
+              console.log(user);
+              array.push({name : user.name, points : user.points, delegatecard : user.delegatecard });
+            });
+                                
+    
+    res.render('leaderboard.ejs',{users: array}); 
+                                }
+});
 
         // =====================================
     // LOGOUT ==============================
