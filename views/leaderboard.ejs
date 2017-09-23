@@ -5,7 +5,12 @@
 </head>
 <body>
 
-<p>leaderboard</p>
+<h2>Leaderboard</h2>
 
+<% for (var i = 0; i < array.length; i++) { %>
+<h4><%= i.name %></h4>
+<h5><%= i.points %></h5>
+<h5><%= i.delegatecard %></h5>
+<% } %>
 </body>
 </html>
