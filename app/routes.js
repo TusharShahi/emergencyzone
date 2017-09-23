@@ -23,7 +23,7 @@ module.exports = function(app, passport) {
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect : '/game', // redirect to the secure profile section
         failureRedirect : '/xxx', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
+        failureFlash : true // allow flash messages req.authInfo
     }));
 
 
