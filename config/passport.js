@@ -128,7 +128,7 @@ module.exports = function(passport) {
 
             // check to see if theres already a user with that email
             if (user) {
-                return done(null, false, req.flash('signupMessage', 'That name is already taken.'));
+                return done(null, false,{ message: 'The username is already taken.' });
             } else {
 
                 exists = 1;
@@ -162,7 +162,7 @@ module.exports = function(passport) {
 
             // check to see if theres already a user with that email
             if (user) {
-                return done(null, false, req.flash('signupMessage', 'That delegatecard number is already in use.'));
+                return done(null, false, { message: 'The delegate card is already in use.' });
             } else {
                 if(exists == 1)
                 {
