@@ -23,7 +23,7 @@ module.exports = function(app, passport) {
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect : '/game', // redirect to the secure profile section
         failureRedirect : '/xxx', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
+        failureFlash : true // allow flash messages req.authInfo
     }));
 
 
@@ -179,8 +179,21 @@ module.exports = function(app, passport) {
 // ===================== 
 
 app.get('/leaderboard', function(req, res) {
-      res.render('leaderboard.ejs'); 
-    });
+
+    User.find().sort({points : 1}).limit(20).exec(function(err,docs)
+                                { 
+            console.log(docs);
+            docs.forEach(function(user)
+            {
+                
+              console.log(user);
+              array.push({name : user.name, points : user.points, delegatecard : user.delegatecard });
+            });
+                                
+    
+    res.render('leaderboard.ejs',{users: array}); 
+                                }
+});
 
         // =====================================
     // LOGOUT ==============================
