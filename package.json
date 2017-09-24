@@ -1,13 +1,13 @@
 {
   "name": "techtatva",
-  "version": "1.0.0",
-  "description": "",
+ // "version": "1.0.0",
+  //"description": "",
   "main": "server.js",
-  "scripts": {
-    "start" : "node server.js"
-  },
-  "author": "",
-  "license": "ISC",
+  //"scripts": {
+   // "start" : "node server.js"
+  //},
+  //"author": "",
+  //"license": "ISC",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.1",
@@ -20,8 +20,8 @@
     "morgan": "^1.8.2",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0"
-  },
-  "engines": {
-    "node": "4.1.1"
-  }
+  }//,
+  //"engines": {
+   // "node": "4.1.1"
+  //}
 }
