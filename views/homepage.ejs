@@ -21,6 +21,16 @@
 	</script> 
 </head>
 <body>
+	<% if(error[0]) { %>
+	<div> 
+	<h1><%= error[0] %></h1>
+	<h1>error hai</h1>
+	</div>
+	<% } else {%>
+	<h1>No error</h1>
+	<%}%>
+
+
 
 	<form action="/signup" method="post" onsubmit="return signupvalidate()">
 

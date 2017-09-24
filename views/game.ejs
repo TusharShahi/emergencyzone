@@ -1,43 +1,287 @@
 <!DOCTYPE html>
-<html>
+<html style="overflow-x: hidden; width: auto;">
 <head>
+<link href="https://fonts.googleapis.com/css?family=Arvo:400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Rubik:400,500,700,900" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800,900" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/style.css" />
 	<title>GAME</title>
 </head>
+<style>
+body
+{
+	background-color: #77A6F7;
+margin: 0;
+padding: 0;
+}
+
+a
+{
+	text-decoration: none;
+	color: inherit;
+}
+h4
+{	color: white;
+	font-family: 'Arvo', serif;
+font-family: 'Rubik', sans-serif;
+font-family: 'Lato', sans-serif;
+letter-spacing: 12px;
+font-weight: 900;
+font-size: 62px;
+text-align: center;
+border-bottom: 10px solid #fff;
+padding-bottom: 10px;
+width: 400px;
+margin: 10px auto;
+
+}
+#usercard
+{
+	background-color: #d3e3fc;
+width: 80%;
+text-align: center;
+margin: 10px auto;
+}
+#questioncard
+{
+	background: #fff;
+	padding: 20px;
+	width: auto;
+	margin: 0 auto;
+}
+#questioncard p
+{
+	width: 80%;
+	text-align: center;
+	margin: 20px auto;
+font-family: 'Lato', sans-serif;
+color: #666;
+letter-spacing: 0.3px;
+}
+#rulesscreen h2
+{	font-family: 'Montserrat', sans-serif;
+	color: #00887A;
+	color: #000000;
+	font-weight: 800;
+	text-align: center;
+	font-size: 40px;
+}
+.rules
+{
+	background: #fff;
+position: absolute;
+transition: all 1s ease-in-out;
+width: 100%;
+right : 1500px;
+bottom: 0px;
+top: 0px;
+}
+.rulesshow
+{
+right : 0px;
+transition: all 1s ease-in-out;
+}
+#scenariostatement
+{
+
+}
+#questionstatement
+{
+	text-align: center;
+font-weight: 800;
+text-transform: uppercase;
+font-size: 20px;
+
+}
+form>div
+{
+	text-align: center;
+	font-size: 20px;
+	width: 30%;
+	margin: 0 auto;
+}
+form>div>div
+{
+	margin: 0 auto;
+	text-align: left;
+	width: auto;
+}
+input
+{
+	display: none;
+	width: 10px;
+	margin: 0px 20px;
+	background-color: transparent;
+}
+input:checked
+{
+	border: 2px solid #000;
+	border-radius: 100%;
+}
+[type="radio"] {
+  border: 0; 
+  clip: rect(0 0 0 0); 
+  height: 1px; 
+  margin: -1px; 
+  overflow: hidden; 
+  padding: 0; 
+  position: absolute; 
+  width: 1px;
+}
+label {
+	position: relative;
+	left: 100px;
+  display: block;
+  cursor: pointer;
+  line-height: 2.5;
+  font-size: 20px;
+  letter-spacing: 0.1px; 
+  color: #00887A;
+  font-family: 'Lato';
+}
+[type="radio"] + span {
+  display: block;
+}
+
+/* the basic, unchecked style */
+[type="radio"] + span:before {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.25em;
+  border-radius: 1em;
+  border: 1px solid #fff;
+  box-shadow: 0 0 0 0.15em #00887A;
+  margin-right: 0.75em;
+  transition: 0.3s ease all;
+}
+
+/* the checked style using the :checked pseudo class */
+[type="radio"]:checked + span:before {
+  background: #00887A;
+  box-shadow: 0 0 0 0.25em #00887A;
+}
+
+/* never forget focus styling */
+[type="radio"]:focus + span:after {
+  content: '\0020\2190';
+  font-size: 1.5em;
+  line-height: 1;
+  vertical-align: -0.125em;
+}
+
+#submitbutton
+{
+display: block;
+width: 100px;
+padding: 10px;
+font-family: 'Lato';
+font-size: 20px;
+margin: 10px;
+background-color: #00887A;
+color: #fff;
+margin-left: 30px;
+border: #00887A solid 1px;
+border-radius: 3px;
+margin: 5px auto;
+
+}
+#navbar
+{
+position: absolute;
+bottom: -100px;
+right: 10px;
+width: 240px;
+font-size: 10px;
+}
+#navbar h2
+{
+	display: inline-block;
+	color: #00887a;
+	font-family: 'Lato', sans-serif;
+	font-weight: 700;
+	padding: 0px 5px 0px 5px;
+} 
+</style>
+<script>
+	var i = 0;
+	var func = function()
+	{
+		var elem = document.getElementById("rulesscreen");
+		console.log(window.getComputedStyle(elem,null).getPropertyValue("right"));
+		var x = window.getComputedStyle(elem,null).getPropertyValue("right");
+		//console.log(document.getElementById('rulesscreen').style.right);
+		if(x != "0px"){
+						console.log("if");
+		document.getElementById('rulesscreen').className += " rulesshow";}
+		else
+		{
+			console.log("else");
+		document.getElementById('rulesscreen').className = "rules";
+			
+		}
+	}
+
+</script> 
 <body>
-<h4>SCENARIO</h4>
-<p><%= user.scenario %></p>
+<div class="rules" id="rulesscreen">
+<a id="closebutton" onclick="func()">&times;</a>
+<h2>RULES</h2>
+<h3>rule 1</h3>
+<h3>rule 1</h3>
+<h3>rule 1</h3>
+<h3>rule 1</h3>
+<h3>rule 1</h3>
+</div>
 
 <div>
-<p><% if(flag){  %>
+<div id="usercard">
+<div><h3><%= user.local.username %></h3></div>
+<div><h3>USER LEVEL</h3>
+<p><%= user.level %></p>
+</div>
+<div>
+<h3>USER POINTS</h3>
+<p><%= user.points %></p>
+</div>
+</div>
+<h4>SCENARIO</h4>
+<div>
+<p id="scenariostatement"><%= user.scenario %></p>
+
+<% if(flag){  %>
 <p><%= flag %>
 points have been awarded</p>
 <% } %>
 </div>
-<br>
-<br>
-<h2>Scenario Statement</h2>
+<div id="questioncard">
+<!--<h2>Scenario Statement</h2> -->
 <p><%= scenario %></p>
-<br>
-<br>
-<br>
-<h3>USER LEVEL</h3>
-<p><%= user.level %></p>
-<br>
-<br>
-<h3>USER POINTS</h3>
-<p><%= user.points %></p>
 <form action="/submitanswer" method="post">
-<p><%= question.statement %></p>
-<label>Answer</label>
+<p id="questionstatement"><%= question.statement %></p>
 <br>
-  <input type="radio" name="submittedanswer" value="a"><%= question.options[0] %><br>
-  <input type="radio" name="submittedanswer" value="b"><%= question.options[1] %><br>
-  <input type="radio" name="submittedanswer" value="c"><%= question.options[2] %><br>
-  <input type="radio" name="submittedanswer" value="d"><%= question.options[3] %><br>
+	<div>
+	<div>
+  <label for="answer1"><input type="radio" name="submittedanswer" value="a" id="answer1"><span><%= question.options[0] %></span></label>
+  <label for="answer2"><input type="radio" name="submittedanswer" value="b" id="answer2"><span><%= question.options[1] %></span></label>
+  <label for="answer3"><input type="radio" name="submittedanswer" value="c" id="answer3"><span><%= question.options[2] %></span></label>
+  <label for="answer4"><input type="radio" name="submittedanswer" value="c" id="answer4"><span><%= question.options[3] %></span></label>
+ 
+  </div>
+  </div>
   <br><br>
-<input type="submit" name="submitanswer">
+ <input type="submit" name="submitanswer" id="submitbutton">
 
 </form>
 
+<div id="navbar">
+<h2><a href="/leaderboard">LeaderBoard</a></h2>
+<h2 style="border-left: 1px solid #00887a;"><a onclick="func()">Rules</a></h2>
+<!--<a href="/logout"><h2>Logout</h2></a> -->
+</div>
+</div>
+</div>
 </body>
 </html>

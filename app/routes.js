@@ -1,7 +1,11 @@
 var User            = require('../app/models/user');
 //var Question = require('../app/models/question');
+var express = require('express');
 var Scenario = require('../app/models/scenario')
 module.exports = function(app, passport) {
+
+//app.use(express.static(__dirname+'/public'));
+
 
     // =====================================
     // HOME PAGE (with login and signup links) ========
@@ -13,7 +17,29 @@ module.exports = function(app, passport) {
       }
   
         else
-            res.render('homepage.ejs')
+            {   
+                console.log(req.sessionStore.sessions);
+                console.log("----");
+                console.log(req.sessionStore.sessions.cookie);
+                console.log("----");
+                console.log(req.flash("error"));                
+                if(req.flash("error")[0])
+                {
+                errormessage = req.flash("error")[0];  
+                }
+                else
+                {
+                errormessage="";
+                }
+                res.render('homepage.ejs',{error : errormessage//function()
+                    //{
+                         //   while(true);
+                    }
+                    ); 
+                
+            }
+
+
     });
 
     // ====================================
@@ -22,7 +48,7 @@ module.exports = function(app, passport) {
 
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect : '/game', // redirect to the secure profile section
-        failureRedirect : '/xxx', // redirect back to the signup page if there is an error
+        failureRedirect : '/', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages req.authInfo
     }));
 
@@ -39,6 +65,8 @@ module.exports = function(app, passport) {
 //            console.log(req.session.flag);
         if(!req.session.flag) flag = null;
         else flag = req.session.flag;
+
+        console.log(flag);
        /* if(req.query.flag)
         {
             console.log('flag is there');
@@ -180,19 +208,23 @@ module.exports = function(app, passport) {
 
 app.get('/leaderboard', function(req, res) {
 
-    User.find().sort({points : 1}).limit(20).exec(function(err,docs)
+    User.find().sort({points : -1}).limit(20).exec(function(err,docs)
                                 { 
-            console.log(docs);
+            var array = [];
+  //          console.log(docs);
             docs.forEach(function(user)
             {
                 
-              console.log(user);
-              array.push({name : user.name, points : user.points, delegatecard : user.delegatecard });
-            });
-                                
-    
+            console.log(user.points);
+              array.push({name : user.local.username, points : user.points, delegatecard : user.delegatecard });
+                console.log("-----");                
+      });      
+
+                console.log("-----");     
+   console.log(array);    
     res.render('leaderboard.ejs',{users: array}); 
-                                }
+                                });             
+
 });
 
         // =====================================
@@ -211,16 +243,17 @@ app.get('/leaderboard', function(req, res) {
 
         app.post('/login', passport.authenticate('local-login', {
         successRedirect : '/game', // redirect to the game
-        failureRedirect : '/homepage', // redirect back to the signup page if there is an error
+        failureRedirect : '/', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
+        //failwithError : true
     }));
 
     //================================
     //======== REST OF REQUESTS ======
     //================================
-    app.use(function(req, res) {
-    res.redirect('/')
-});    
+//    app.use(function(req, res) {
+ //   res.redirect('/')
+//});    
 
 };
 

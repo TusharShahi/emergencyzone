@@ -119,8 +119,8 @@ module.exports = function(passport) {
 
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
-        User.findOne(/*{$or : [{ 'local.username' : username },{'req.body.delegatecard' : delegatecard}]}*/
-            {'local.username' : username},
+        //User.findOne(/*{$or : [{ 'local.username' : username },{'req.body.delegatecard' : delegatecard}]}*/
+          /*  {'local.username' : username},
          function(err, user) {
             // if there are any errors, return the error
             if (err)
@@ -151,9 +151,9 @@ module.exports = function(passport) {
                     return done(null, newUser);
                 });
             }    */                
-            }
+        //    }
             // });
-       });
+      // }); */
 
         User.findOne({'delegatecard' : req.body.delegatecard},function(err,user)
         {
