@@ -72,6 +72,7 @@ module.exports = function(app, passport) {
             console.log('flag is there');
             console.log(req.query.flag);
         } */
+        req.session.flag = null;
         if(req.user)
         {var foundquestion = "kutta";
         Scenario.findOne({'number' : req.user.scenario},function(err, scenario) {
@@ -111,22 +112,22 @@ module.exports = function(app, passport) {
 
         if(req.user)
         {
+
             Scenario.findOne({'number' : req.user.scenario},function(err, scenario) {
             // if there are any errors, return the error
            // console.log(foundquestion);
             //          console.log(flash('error'));
          //   console.log("submitted answer " + req.body.submittedanswer);
            // console.log("actual answer " + scenario.answers[req.user.level-1]);
-            if(scenario.answers[req.user.level-1] == req.body.submittedanswer)
+            //console.log(req.body.submitanswer);
+            if(req.body.submitanswer == 'Skip')
+            {
+                flag = 0;
+            }
+            else if(scenario.answers[req.user.level-1] == req.body.submittedanswer)
             {
              //   console.log("correct answer");
                 flag = 3;
-            }
-            else if(req.body.submittedanswer == "")
-            {
-               // console.log(req.body);
-                //console.log("no answer");
-                flag = 0;
             }
             else
             {
@@ -138,36 +139,34 @@ module.exports = function(app, passport) {
         // look and update the score of the player
         // if the the question was the last question change scenario
             if(req.user.level == 10)
-            {            
+                {            
 
-            User.findOneAndUpdate(
-            {'delegatecard' : req.user.delegatecard},{$inc : {points: flag,scenario : 1},$set : {level: 1}},
-            function(err,user)
-            {
-                if(err) throw err;
+                User.findOneAndUpdate(
+                {'delegatecard' : req.user.delegatecard},{$inc : {points: flag,scenario : 1},$set : {level: 1}},
+                function(err,user)
+                {
+                    if(err) throw err;
                 //console.log(user);
                 //console.log("updated");
-                req.session['flag'] = flag;
-                res.redirect('/game');
+                    req.session['flag'] = flag;
+                    res.redirect('/game');
             
-            });
-            }
+                });
+                }
             else
-            {
-            User.findOneAndUpdate(
-            {'delegatecard' : req.user.delegatecard},{$inc : {points: flag,level: 1}},function(err,user)
-            {
+                {
+                User.findOneAndUpdate(
+                {'delegatecard' : req.user.delegatecard},{$inc : {points: flag,level: 1}},function(err,user)
+                {
 
-                if(err) throw err;
-
-                //console.log(user);
-
-                //console.log("updated just level");
-                req.session['flag'] = flag;
-                 res.redirect('/game');
-            });
+                    if(err) throw err;
+                    //console.log(user);
+                    //console.log("updated just level");
+                    req.session['flag'] = flag;
+                    res.redirect('/game');
+                });
              
-            }
+                }
             } );
         }
         else
@@ -239,22 +238,18 @@ app.get('/leaderboard', function(req, res) {
 //=======================
 //====LOGIN==============
 //=======================
-
-
         app.post('/login', passport.authenticate('local-login', {
         successRedirect : '/game', // redirect to the game
         failureRedirect : '/', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
         //failwithError : true
     }));
-
     //================================
     //======== REST OF REQUESTS ======
     //================================
 //    app.use(function(req, res) {
  //   res.redirect('/')
 //});    
-
 };
 
 function isLoggedIn(req, res, next) {
