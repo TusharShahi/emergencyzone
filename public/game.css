@@ -12,7 +12,7 @@ a
 	text-decoration: none;
 	color: inherit;
 }
-body>div>h4
+#maindiv>h4
 {	color: #666;
 	font-family: 'Arvo', serif;
 font-family: 'Rubik', sans-serif;
@@ -82,10 +82,11 @@ color: #fff;
 letter-spacing: 0.3px;
 }
 
-#rulescreen
+#rulesscreen
 {
 		padding: 20px;
-	padding-bottom: 200px;
+		padding-bottom: 200px;
+		text-align: center;
 }
 #rulesscreen h2
 {	font-family: 'Montserrat', sans-serif;
@@ -102,6 +103,7 @@ letter-spacing: 0.3px;
 		text-transform: uppercase;
 		text-transform: none;
 		font-weight: 400;
+		text-align: center;
 }
 #rulesscreen h4
 {
@@ -339,26 +341,35 @@ input:disabled
 {
 background-color: #111;
 }
+
 @media screen and (max-width: 786px)
 {
-	body
+	#usercard h3
 	{
-		background-color: black;
+		font-size: 12px;
 	}
-	body>div>h4
+	#maindiv>h4
 	{
-		margin-top: 300px;
+		margin-top: 60px;
+		margin-bottom: 60px;
+		font-size: 30px;
+		width: 250px;
+		text-align: center;
+		padding-left: 12px;
 	}
 	#questioncard
 	{
-		padding-top: 100px;
-		position: absolute;
-		bottom: 0px;
-		padding-bottom: 100px;
+		padding-top: 40px;
+		padding-bottom: 0px;
 	}
 	#questioncard>p
 	{
-		margin-bottom: 100px;
+		margin-bottom: 50px;
+		font-size: 12px;
+	}
+	#questionstatement
+	{
+		font-size: 14px;
 	}
 	#navbar
 	{
@@ -366,19 +377,31 @@ background-color: #111;
 		margin-top: 20px;
 		margin: 10px auto;
 		text-align: center;
+		margin-bottom: 0px;
 	}
-}
-@media screen and (max-width: 786px)
-{
-	body
+	form>div
 	{
-		background-color: yellow;
+		width: 260px;
+	}
+	form>div>div>div
+	{
+		padding: 2px;
+	}
+	#submitbar input
+	{
+		font-size: 12px;
+		padding: 5px;
+	}
+
+	#rulesscreen h3,#rulesscreen h4
+	{
+		margin: 5px;
+	}
+	.rules br
+	{
+		display: none;
 	}
 }
 @media screen and (max-width: 660px)
 {
-	body
-	{
-		background-color: red;
-	}
 }

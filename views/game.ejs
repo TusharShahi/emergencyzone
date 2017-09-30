@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	 <meta name="viewport" content="width=device-width">
+
 <link href="https://fonts.googleapis.com/css?family=Arvo:400,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,700,900" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
@@ -17,14 +19,46 @@
 		console.log(window.getComputedStyle(elem,null).getPropertyValue("right"));
 		var x = window.getComputedStyle(elem,null).getPropertyValue("right");
 		//console.log(document.getElementById('rulesscreen').style.right);
-		if(x != "0px"){
-						console.log("if");
-		document.getElementById('rulesscreen').className += " rulesshow";}
+		if(x != "0px")
+		{
+			console.log("if");
+			document.getElementById('rulesscreen').className += " rulesshow";
+				console.log(document.getElementsByClassName('rule'));
+	//		for(int i=0;i<document.getElementsByClassName('rule').length;i++)
+	//			i.className += " slideup";
+		for(i=0;i<document.getElementsByClassName('rule').length;i++)
+				{	console.log(i);
+//					if(check==1)
+//					{
+					document.getElementsByClassName('rule')[i].className += " slideup";
+
+//					}
+//					else
+//					{
+//					document.getElementsByClassName('rule')[i].className -= " slideup";
+//					check = 1;
+//					}
+				}
+
+		}
+
+
 		else
 		{
 			console.log("else");
-		document.getElementById('rulesscreen').className = "rules";
-			
+			document.getElementById('rulesscreen').className = "rules";
+			console.log(document.getElementsByClassName('rule'));
+	//		for(int i=0;i<document.getElementsByClassName('rule').length;i++)
+	//			i.className -= " slideup";
+		
+					for(i=0;i<document.getElementsByClassName('rule').length;i++)
+				{	console.log(i);
+//					if(check==1)
+//					{
+					document.getElementsByClassName('rule')[i].className = "rule";
+
+				}
+
 		}
 	}
 
@@ -51,7 +85,7 @@
     <h3 class="rule">In case of tie breaker, time is on your side</h3>
 	</div>
 
-<div>
+<div id="maindiv">
 <div id="usercard">
 <div><h3><%= user.local.username %></h3></div>
 <div>
@@ -112,6 +146,7 @@
 <h2 style="border-left: 1px solid #fff;"><a onclick="func()">Rules</a></h2>
 <!--<a href="/logout"><h2>Logout</h2></a> -->
 </div>
+
 </div>
 </div>
 <script>
