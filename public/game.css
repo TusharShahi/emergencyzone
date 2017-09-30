@@ -1,0 +1,294 @@
+body
+{
+/*	background-color: #77A6F7; */
+background-color: #4b96ae; 
+background-color: #fff;
+margin: 0;
+padding: 0;
+}
+
+a
+{
+	text-decoration: none;
+	color: inherit;
+}
+body>div>h4
+{	color: #666;
+	font-family: 'Arvo', serif;
+font-family: 'Rubik', sans-serif;
+font-family: 'Lato', sans-serif;
+letter-spacing: 12px;
+font-weight: 900;
+font-size: 62px;
+text-align: center;
+border-bottom: 10px solid #666;
+padding-bottom: 10px;
+width: 400px;
+margin: 30px auto;
+
+}
+#usercard
+{
+	background-color: #d3e3fc;
+background-color: #6a778a;
+width: 80%;
+text-align: center;
+margin: 10px auto;
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+margin-top: 0px;
+
+}
+#usercard h3
+{
+	font-family: 'Lato';
+margin: 0;
+	font-weight: 100;
+	color: #fff;
+margin-top: 5px;
+}
+#usercard h4
+{
+		font-family: 'Lato';
+		font-weight: 100;
+margin: 0;
+	color: #fff;
+	margin-bottom: 5px;
+}
+#usercard>div
+{
+
+}
+#questioncard
+{
+	background: #fff;
+	background-color: #6dcac2;
+	background-color: #ff7a65;
+	padding: 20px;
+	width: auto;
+	margin: 0 auto;
+padding-bottom: 0px;
+position: relative;
+}
+#questioncard p
+{
+	width: 80%;
+	text-align: center;
+	margin: 20px auto;
+font-family: 'Lato', sans-serif;
+color: #666;
+color: #fff;
+letter-spacing: 0.3px;
+}
+#rulescreen
+{
+		padding: 20px;
+	z-index: 99999;
+	padding-bottom: 200px;
+}
+#rulesscreen h2
+{	font-family: 'Montserrat', sans-serif;
+	color: #00887A;
+	color: #000000;
+	font-weight: 800;
+	text-align: center;
+	font-size: 40px;
+}
+.rules
+{
+	background: #fff;
+position: absolute;
+transition: all 1s ease-in-out;
+width: 100%;
+right : 1500px;
+bottom: 0px;
+top: 0px;
+}
+.rulesshow
+{
+right : 0px;
+transition: all 1s ease-in-out;
+}
+#scenariostatement
+{
+
+}
+#questionstatement
+{
+	text-align: center;
+font-weight: 800;
+text-transform: uppercase;
+font-size: 20px;
+
+}
+form>div
+{
+	text-align: center;
+	font-size: 20px;
+	width: 30%;
+	margin: 0 auto;
+}
+form>div>div
+{
+	margin: 0 auto;
+	text-align: left;
+	width: auto;
+}
+form>div>div>div
+{
+	border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.35);
+    margin: 10px;
+    background-color: #fff;
+    padding: 10px;
+}
+
+input
+{
+	display: none;
+	width: 10px;
+	margin: 0px 20px;
+	background-color: transparent;
+}
+input[type="submit"]:enabled:hover
+{
+	cursor: pointer;
+}
+input:checked
+{
+	border: 2px solid #000;
+	border-radius: 100%;
+}
+[type="radio"] {
+  border: 0; 
+  clip: rect(0 0 0 0); 
+  height: 1px; 
+  margin: -1px; 
+  overflow: hidden; 
+  padding: 0; 
+  position: absolute; 
+  width: 1px;
+}
+label {
+	position: relative;
+	left: 20px;
+  display: block;
+  cursor: pointer;
+  line-height: 2.5;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1px; 
+  color: #00887A;
+  color: #666;
+  font-family: 'Lato';
+}
+[type="radio"] + span {
+  display: block;
+}
+
+/* the basic, unchecked style */
+[type="radio"] + span:before {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.25em;
+  border-radius: 1em;
+  border: 1px solid #fff;
+  box-shadow: 0 0 0 0.15em #00887A;
+  margin-right: 0.75em;
+  transition: 0.3s ease all;
+}
+
+/* the checked style using the :checked pseudo class */
+[type="radio"]:checked + span:before {
+  background: #00887A;
+  box-shadow: 0 0 0 0.25em #00887A;
+}
+
+/* never forget focus styling */
+[type="radio"]:focus + span:after {
+  content: '\0020\2190';
+  font-size: 1.5em;
+  line-height: 1;
+  vertical-align: -0.125em;
+}
+
+#pointsnotification
+{
+	background: #e91e63;
+	position: fixed;
+	z-index: 222;
+	width: 300px;
+	left: 50%;
+	top: 50%;
+	margin-left: -150px;
+	margin-top: -150px;
+	height: 300px;
+	color: #666;
+	border-radius: 50%;
+	vertical-align: middle;
+	line-height: 150px;
+	text-align: center;
+/*	box-shadow: inset 0 0 4px rgba(0,0,0,0.4);
+	box-shadow: 0 2px 8px rgba(0,0,0,0.36); */
+}
+.show
+{
+	opacity: 1;
+	transition: all 1s ease;
+}
+.hide
+{
+
+	opacity: 0;
+	transition: all 1s ease;
+}
+#pointsnotification h2
+{
+	
+	font-family: 'Lato';
+	color: #fff;
+	font-weight: 100;
+	font-size: 100px;
+}
+
+#submitbutton,#submitbutton2
+{
+display: inline-block;
+width: 100px;
+padding: 10px;
+font-family: 'Lato';
+font-size: 20px;
+margin: 10px;
+background-color: #00887A;
+color: #fff;
+margin-left: 30px;
+border: #ff7a65 solid 1px;
+border-radius: 3px;
+margin: 5px auto;
+
+}
+#navbar
+{
+position: absolute;
+bottom: 0px;
+right: 10px;
+width: 240px;
+font-size: 10px;
+}
+#navbar h2
+{
+	display: inline-block;
+	color: #00887a;
+	color: #fff;
+	font-family: 'Lato', sans-serif;
+	font-weight: 700;
+	padding: 0px 5px 0px 5px;
+} 
+input:disabled
+{
+background-color: #111 !important;
+}
+

@@ -1,7 +1,9 @@
 var User            = require('../app/models/user');
 //var Question = require('../app/models/question');
 var express = require('express');
-var Scenario = require('../app/models/scenario')
+var Scenario = require('../app/models/scenario');
+
+
 module.exports = function(app, passport) {
 
 //app.use(express.static(__dirname+'/public'));
@@ -18,18 +20,24 @@ module.exports = function(app, passport) {
   
         else
             {   
-                console.log(req.sessionStore.sessions);
+                //console.log(req.sessionStore.sessions);
                 console.log("----");
-                console.log(req.sessionStore.sessions.cookie);
+                //console.log(req.sessionStore.sessions.cookie);
+                console.log("----");
+                var errormessage = req.flash("error");
                 console.log("----");
                 console.log(req.flash("error"));                
-                if(req.flash("error")[0])
+                console.log(req.session['flag']);
+                if(errormessage[0])
                 {
-                errormessage = req.flash("error")[0];  
+                console.log("error message");
+                console.log(errormessage);
                 }
                 else
                 {
-                errormessage="";
+               
+                console.log("error message not there");
+               console.log(errormessage); 
                 }
                 res.render('homepage.ejs',{error : errormessage//function()
                     //{
@@ -52,6 +60,60 @@ module.exports = function(app, passport) {
         failureFlash : true // allow flash messages req.authInfo
     }));
 
+  
+  /*  app.post('/signup', function(req, res) {
+       passport.authenticate('local',function(err,user,info)
+      {
+        console.log("sss");
+        User.findOne({ 'local.username' :  user.username }, function(err, founduser) {
+
+            // if there are any errors, return the error
+            if (err)
+
+            {             console.log("asdasdasd1");
+                return next(err);
+            }
+            // check to see if theres already a user with that email
+            if (founduser) {
+            console.log("asdasdasd2");
+                if(founduser.username == user.username)
+                {  res.render('homepage.ejs',{error: "That username is already in use."});   }
+                else if(founduser.delegatecard == req.user.delegatecard)
+                { 
+                      res.render('homepage.ejs',{error: "That delegate card is already in use."}); 
+                }
+            }
+            else
+            {
+                            console.log("asdasdasd3");
+                // if there is no user with that email
+                // create the user
+                
+                var newUser            = new User();
+                // set the user's local credentials
+                newUser.local.username    = username;
+                newUser.local.password = newUser.generateHash(password);
+                newUser.delegatecard = req.body.delegatecard;
+                newUser.phonenumber = req.body.phonenumber;
+                newUser.level = 1;
+         
+                // save the user
+                newUser.save(function(err) {
+                    if (err)
+                        throw err;
+                    res.render('game.ejs');
+                });
+            }(req,res); 
+        });    
+
+       
+       
+       }); }); 
+    
+    
+ */   
+    
+    
 
     // =====================================
     // GAME ================================
@@ -63,18 +125,22 @@ module.exports = function(app, passport) {
 //            console.log(req.session);
 
 //            console.log(req.session.flag);
-        if(!req.session.flag) flag = null;
-        else flag = req.session.flag;
+        //if(!req.session.flag) flag = null;
+        //else flag = req.session.flag;
 
-        console.log(flag);
+        //console.log("FLAG IS " + req.session['flag']);
+        //console.log("flag is " + flag);
        /* if(req.query.flag)
         {
             console.log('flag is there');
             console.log(req.query.flag);
         } */
-        req.session.flag = null;
+        //req.session.flag = null;
+        flag = req.session['flag'];
+        req.session['flag'] = 0;
         if(req.user)
-        {var foundquestion = "kutta";
+        {
+            //var foundquestion = "kutta";
         Scenario.findOne({'number' : req.user.scenario},function(err, scenario) {
             // if there are any errors, return the error
           /*  if (err){
@@ -177,28 +243,19 @@ module.exports = function(app, passport) {
     });
 
 /*    app.get('/changescenario',isLoggedin,function(req,res){
-
         if(req.user)
         {
-
         User.findOneAndUpdate(
         {'delegatecard' : req.user.delegatecard},{$inc : {delegatecard: 1}},function(err,user)
         {
-
           console.log(user);
-
         });
-
-
         }
-
         else
         {
             res.redirect('/');
         }
-
         });
-
 */
 
 // ===================== 
@@ -247,9 +304,9 @@ app.get('/leaderboard', function(req, res) {
     //================================
     //======== REST OF REQUESTS ======
     //================================
-//    app.use(function(req, res) {
- //   res.redirect('/')
-//});    
+    app.use(function(req, res) {
+    res.redirect('/')
+});    
 };
 
 function isLoggedIn(req, res, next) {

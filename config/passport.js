@@ -1,7 +1,9 @@
 var LocalStrategy   = require('passport-local').Strategy;
-
+var express = require('express');
+var router = express.Router();
 // load up the user model
 var User            = require('../app/models/user');
+
 
 module.exports = function(passport) {
 
@@ -36,33 +38,27 @@ module.exports = function(passport) {
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
     function(req, username, password, done) {
-
         //exists = 1;
         console.log("yaha");
         // asynchronous
         // User.findOne wont fire unless data is sent back
         process.nextTick(function() {
-
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
         User.findOne({ 'local.username' :  username }, function(err, user) {
             // if there are any errors, return the error
             if (err)
                 return done(err);
-
             // check to see if theres already a user with that email
             if (user) {
                 console.log("if ke andar exists");
                 return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
             } 
-
             else
             {
-
                 // if there is no user with that email
                 // create the user
                 var newUser            = new User();
-
                 // set the user's local credentials
                 newUser.local.username    = username;
                 newUser.local.password = newUser.generateHash(password);
@@ -78,24 +74,20 @@ module.exports = function(passport) {
                 });
             } 
         });    
-
        /* User.findOne({'delegatecard' : delegatecard},function(err,user)
         {
             if (err)
                 return done(err);
-
             // check to see if theres already a user with that delegate card
             if (user) {
                                 console.log("if ke delegatecard andar exists");
                 return done(null, false, req.flash('signupMessage', 'That delegate card details is already taken.'));
             } 
-
             else exists = 0;
        }); */
        //console.log(exists);
         /*if(exists == 0)
         {
-
         }
         else
         {
@@ -110,34 +102,52 @@ module.exports = function(passport) {
       //  delegatecardField : 'delegatecard',
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
-    function(req, username, /*delegatecard, */password, done) {
+    function(req, username,password, done) {
 
         exists = 0;
         // asynchronous
         // User.findOne wont fire unless data is sent back
-       // process.nextTick(function() {
+        process.nextTick(function() {
 
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
-        //User.findOne(/*{$or : [{ 'local.username' : username },{'req.body.delegatecard' : delegatecard}]}*/
-          /*  {'local.username' : username},
+        User.findOne(/*{ 'local.username' : username },{'req.body.delegatecard' : delegatecard}]}*/
+           { $or : [{'local.username' : username},{'delegatecard' :req.body.delegatecard}]}).exec(
          function(err, user) {
             // if there are any errors, return the error
             if (err)
                 return done(err);
-
             // check to see if theres already a user with that email
             if (user) {
-                return done(null, false,{ message: 'The username is already taken.' });
-            } else {
+                if(user.delegatecard == req.body.delegatecard)
+                {
+                return done(null, false, { message: 'The delegate card is already in use.' });          
+                }
 
+                return done(null, false,{ message : 'The username is already taken.' });
+            } else {
                 exists = 1;
+                var newUser            = new User();
+                // set the user's local credentials
+                newUser.local.username = username;
+                newUser.local.password = newUser.generateHash(password);
+                newUser.delegatecard   = req.body.delegatecard;
+                newUser.registrationnumber = req.body.registrationnumber;
+                newUser.points = 0;
+                newUser.phonenumber = req.body.phonenumber;
+                newUser.level = 1;
+                newUser.scenario = 1;
+             // save the user
+                newUser.save(function(err) {
+                    if (err)
+                        throw err;
+                    return done(null, newUser);
+                });
                 // if there is no user with that email
                 // create the user
        /*     if(exists == 1)
             {
                 var newUser            = new User();
-
                 // set the user's local credentials
                 newUser.local.username    = username;
                 newUser.local.password = newUser.generateHash(password);
@@ -150,29 +160,27 @@ module.exports = function(passport) {
                         throw err;
                     return done(null, newUser);
                 });
-            }    */                
-        //    }
-            // });
-      // }); */
+            } */                   
+            }
+             });
+        
 
+/*        if(exists ==1)
+        { 
         User.findOne({'delegatecard' : req.body.delegatecard},function(err,user)
         {
                if (err)
                 return done(err);
-
             // check to see if theres already a user with that email
             if (user) {
                 return done(null, false, { message: 'The delegate card is already in use.' });
             } else {
-                if(exists == 1)
-                {
-
+                console.log("We are in else");
                                     var newUser            = new User();
-
                 // set the user's local credentials
-                newUser.local.username    = username;
+                newUser.local.username = username;
                 newUser.local.password = newUser.generateHash(password);
-                newUser.delegatecard = req.body.delegatecard;
+                newUser.delegatecard   = req.body.delegatecard;
                 newUser.registrationnumber = req.body.registrationnumber;
                 newUser.points = 0;
                 newUser.phonenumber = req.body.phonenumber;
@@ -184,12 +192,9 @@ module.exports = function(passport) {
                         throw err;
                     return done(null, newUser);
                 });
-
-                } }
-
-        });
-
-    }));
+                 } 
+        }); }  */
+     }); }));
 
 
       passport.use('local-login', new LocalStrategy({
@@ -220,4 +225,4 @@ module.exports = function(passport) {
         });
 
     }));
-};
+}
