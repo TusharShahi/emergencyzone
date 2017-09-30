@@ -264,7 +264,7 @@ module.exports = function(app, passport) {
 
 app.get('/leaderboard', function(req, res) {
 
-    User.find().sort({points : -1}).limit(20).exec(function(err,docs)
+    User.find().sort({points : -1}).limit(10).exec(function(err,docs)
                                 { 
             var array = [];
   //          console.log(docs);
