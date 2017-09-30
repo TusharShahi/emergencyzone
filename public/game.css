@@ -81,10 +81,10 @@ color: #666;
 color: #fff;
 letter-spacing: 0.3px;
 }
+
 #rulescreen
 {
 		padding: 20px;
-	z-index: 99999;
 	padding-bottom: 200px;
 }
 #rulesscreen h2
@@ -94,22 +94,70 @@ letter-spacing: 0.3px;
 	font-weight: 800;
 	text-align: center;
 	font-size: 40px;
+
+}
+#rulesscreen h3,#rulesscreen h4
+{
+		font-family: 'Lato', sans-serif;
+		text-transform: uppercase;
+		text-transform: none;
+		font-weight: 400;
+}
+#rulesscreen h4
+{
+	font-size: 16px;
+	margin: 0px;
+	text-align: center;
 }
 .rules
-{
-	background: #fff;
-position: absolute;
+{z-index: 99999;
+	
+	background: #fff176;
+/*	background: #CAC531;  
+background: -webkit-linear-gradient(to right, #F3F9A7, #CAC531);  
+background: linear-gradient(to right, #F3F9A7, #CAC531); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ 
+background: #fffc00;  
+background: -webkit-linear-gradient(to top, #ffffff, #fffc00);  /* Chrome 10-25, Safari 5.1-6 
+background: linear-gradient(to top, #ffffff, #fffc00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ 
+*/
+position: fixed;
 transition: all 1s ease-in-out;
-width: 100%;
+width: auto;
 right : 1500px;
 bottom: 0px;
 top: 0px;
+padding: 20px;
 }
+
 .rulesshow
 {
 right : 0px;
 transition: all 1s ease-in-out;
 }
+.rule
+{
+	opacity: 0;
+	top: 40px;
+	transition: all 0.4s ease-in-out;
+	-webkit-transition-delay: 1s;
+	transition-delay: 1s;
+
+}
+.rules h3,.rules h4
+{
+position: relative;
+}
+.slideup
+{
+	opacity: 1;
+	top: 0px;
+	transition: all 0.4s ease-in-out;
+
+	-webkit-transition-delay: 1s;
+	transition-delay: 1s;
+	
+}
+
 #scenariostatement
 {
 
@@ -126,7 +174,7 @@ form>div
 {
 	text-align: center;
 	font-size: 20px;
-	width: 30%;
+	width: 40%;
 	margin: 0 auto;
 }
 form>div>div
@@ -289,6 +337,48 @@ font-size: 10px;
 } 
 input:disabled
 {
-background-color: #111 !important;
+background-color: #111;
 }
-
+@media screen and (max-width: 786px)
+{
+	body
+	{
+		background-color: black;
+	}
+	body>div>h4
+	{
+		margin-top: 300px;
+	}
+	#questioncard
+	{
+		padding-top: 100px;
+		position: absolute;
+		bottom: 0px;
+		padding-bottom: 100px;
+	}
+	#questioncard>p
+	{
+		margin-bottom: 100px;
+	}
+	#navbar
+	{
+		position: static;
+		margin-top: 20px;
+		margin: 10px auto;
+		text-align: center;
+	}
+}
+@media screen and (max-width: 786px)
+{
+	body
+	{
+		background-color: yellow;
+	}
+}
+@media screen and (max-width: 660px)
+{
+	body
+	{
+		background-color: red;
+	}
+}
