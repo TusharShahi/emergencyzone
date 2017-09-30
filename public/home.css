@@ -451,8 +451,8 @@ width: 150px;
 {
 	#errorcard
 	{
-		width: 240px;
-		margin-left: -120px;
+		width: 280px;
+		margin-left: -140px;
 		left: 50%;
 	}
 	.formdiv
@@ -462,11 +462,11 @@ width: 150px;
 	}
 	#signupform
 	{
-		height: 300px;
+		height: 320px;
 	}
 	#loginform
 	{
-		height: 240px;
+		height: 260px;
 	}
 	.formdiv form
 	{
@@ -496,11 +496,11 @@ width: 150px;
 	}
 		.formdiv form input[type="submit"]
 	{
-		margin-top: 20px;
+		margin-top: 10px;
 	}	
 	#loginform label
 	{
-		margin-left: 120px;
+		margin-left: 60px;
 	}
 
 }
