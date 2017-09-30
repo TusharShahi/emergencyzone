@@ -127,11 +127,20 @@ body>h2
 {
 body>h2
 {
-	font-size: 30px;
+	font-size: 38px;
 }
 	#maindiv
 	{
 		width: 300px;
+	}
+
+}
+@media screen and (max-width: 360px)
+{
+
+	#maindiv
+	{
+		width: 240px;
 	}
 
 }
