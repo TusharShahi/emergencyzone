@@ -72,6 +72,65 @@ margin: 20px auto;
 {
 	color: #fff;
 	font-family: 'Lato', sans-serif;
-	font-weight: 700;
+	font-weight: 500;
 	text-align: center;
 } 
+@media screen and (max-width: 1000px)
+{
+body>h2
+{
+	font-size: 75px;
+}
+	#maindiv
+	{
+		width: 600px;
+	}
+}
+@media screen and (max-width: 786px)
+{
+body>h2
+{
+	font-size: 60px;
+}
+	#maindiv
+	{
+		width: 500px;
+	}
+	#navbar
+	{
+		font-size: 14px;
+		font-size: 300;
+	}
+	#navbar h2
+	{
+			font-weight: 200;
+	}
+}
+@media screen and (max-width: 660px)
+{
+body>h2
+{
+	font-size: 46px;
+}
+	#maindiv
+	{
+		width: 360px;
+	}
+	.leader
+	{
+		width: 90%;
+	}
+
+}
+@media screen and (max-width: 420px)
+{
+body>h2
+{
+	font-size: 30px;
+}
+	#maindiv
+	{
+		width: 300px;
+	}
+
+}
