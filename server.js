@@ -7,6 +7,7 @@ var passport = require('passport');
 var flash    = require('connect-flash');
 //for development ease
 var morgan       = require('morgan');
+var passportOneSessionPerUser=require('passport-one-session-per-user');
 
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
@@ -26,8 +27,14 @@ app.set('view engine', 'ejs'); // set up ejs for templating
 app.use(express.static('public'));
 // required for passport
 app.use(session({ secret: 'tusharshahi' })); // session secret
+
+
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
+passport.use(new passportOneSessionPerUser());
+app.use(passport.authenticate('passport-one-session-per-user'));
+
+
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ======================================================================
