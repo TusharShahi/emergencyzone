@@ -213,6 +213,11 @@ margin-left: 5px;
 	border-bottom: 1px solid #666;
 	transition: all 0.2s ease;
 }
+.formdiv form input[type="text"], .formdiv form input[type="password"]
+{
+width: 150px;
+right: 50px;
+}
 input:-webkit-autofill
 {
 	background-color: #fff !important;
@@ -236,6 +241,11 @@ input:-webkit-autofill
 	color: #fff;
 	border: 0px;
 	padding: 10px;
+	right: -60px;
+}
+#loginform label
+{
+	margin-left: 30px;
 }
 #navbar
 {
@@ -488,7 +498,7 @@ width: 150px;
 	{
 		width: 100%;
 	}
-	.formdiv input[type="text"],.formdiv input[type="password"]
+	.formdiv form input[type="text"],.formdiv form input[type="password"]
 	{
 	right: 70px;
 	width: 80px;
@@ -502,11 +512,12 @@ width: 150px;
 	.formdiv p
 	{
 		font-size: 12px;
-		right: -20px;
+		right: -30px;
 	}
 		.formdiv form input[type="submit"]
 	{
 		margin-top: 10px;
+		right: -30px;
 	}	
 	#loginform label
 	{
