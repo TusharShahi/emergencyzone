@@ -465,7 +465,14 @@ width: 150px;
 		right: -20px;
 	}
 
+		.formdiv form input[type="submit"]
+	{
+		right: -30px;
+	}	
 
+#rulesscreen h2
+{	margin: 8px;
+}
 }
 @media screen and (max-width: 420px)
 {
