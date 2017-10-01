@@ -1,13 +1,13 @@
 var express = require('express');
 var app      = express();
-var port     = process.env.PORT || 8080;
+var port     = process.env.PORT || 5000;
 var mongoose = require('mongoose');
 var passport = require('passport');
 // for flash messages to be shown when login is succesfull or failed
 var flash    = require('connect-flash');
 //for development ease
 var morgan       = require('morgan');
-var passportOneSessionPerUser=require('passport-one-session-per-user');
+//var passportOneSessionPerUser=require('passport-one-session-per-user');
 
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
@@ -31,8 +31,8 @@ app.use(session({ secret: 'tusharshahi' })); // session secret
 
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
-passport.use(new passportOneSessionPerUser());
-app.use(passport.authenticate('passport-one-session-per-user'));
+//passport.use(new passportOneSessionPerUser());
+//app.use(passport.authenticate('passport-one-session-per-user'));
 
 
 app.use(flash()); // use connect-flash for flash messages stored in session
