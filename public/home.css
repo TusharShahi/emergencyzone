@@ -167,7 +167,8 @@ position: relative;
 .formdiv h2
 {	display: inline-block;
 	margin: 4px auto;
-	border-bottom: 4px solid #666;
+	color: #55585f;
+	border-bottom: 4px solid #55585f;
 	font-family: 'Lato';
 	margin-bottom: 30px;
 }
