@@ -40,7 +40,24 @@ module.exports = function(app, passport) {
 
             console.log(req.session['flag']);
                 if(req.session['flag'] === undefined || req.session['flag'] === null)
-            {       console.log("flag nahi h");          
+            {
+
+                if(req.user.scenario == 37)
+              {
+
+                    res.render('game.ejs',
+                    {
+                            user: req.user,
+                            finished : 1
+
+                    }
+                        );
+              
+              }
+              else
+              {
+                   console.log("flag nahi h");          
+              
               User.findOneAndUpdate(
              {'delegatecard' : req.user.delegatecard},{$set : {pointsfromscenario: 0,level: 1}},
                 function(err,user)
@@ -64,12 +81,12 @@ module.exports = function(app, passport) {
                             finished: 0
                         });
                 });
-         }); } 
+         }); } } 
             else
         {
 
               console.log("flag h");
-              if(req.user.scenario == 36)
+              if(req.user.scenario == 37)
               {
 
                     res.render('game.ejs',
