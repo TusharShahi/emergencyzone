@@ -427,6 +427,7 @@ width: 150px;
 	.formdiv form input[type="submit"]
 	{	position: 
 		padding: 5px;
+				position: static;
 	}	
 	#signupform
 	{
