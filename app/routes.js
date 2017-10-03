@@ -6,10 +6,7 @@ var Scenario = require('../app/models/scenario');
 
 module.exports = function(app, passport) {
 
-//app.use(express.static(__dirname+'/public'));
-    // =====================================
     // HOME PAGE (with login and signup links) ========
-    // =====================================
     app.get('/',function(req, res) {
       if(req.user)
       {
@@ -27,28 +24,19 @@ module.exports = function(app, passport) {
             }
     });
 
-    // ====================================
     // SIGN UP ============================
-    // ====================================
 
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect : '/game', // redirect to the secure profile section
         failureRedirect : '/', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages req.authInfo
     }));
-    // =====================================
     // GAME ================================
-    // =====================================
     app.get('/game',isLoggedIn,function(req,res)
     {
-        //flag = req.session['flag'];
-        //req.session['flag'] = 0;
         if(req.user)
         {
 
-            //var foundquestion = "kutta";
-//            User.findOne({'delegatecard' : req.user.delegatecard},function(err,user)
-  //          {   console.log(req.session['flag']);
             console.log(req.session['flag']);
                 if(req.session['flag'] === undefined || req.session['flag'] === null)
             {       console.log("flag nahi h");          
@@ -57,25 +45,21 @@ module.exports = function(app, passport) {
                 function(err,user)
                 {           console.log("udpated");
                     if(err) throw err;
-//                console.log(user);
                 var user2 = user;
                 user2.level = 1;
                 console.log("user ka level " + user2.level);
                  Scenario.findOne({'number' : user.scenario},function(err, scenario) {
                                   foundquestion = scenario.questions[0];
                                   console.log("questions1")
-                        // console.log("scenario is " + scenario);
                          if(err)
                         {
                         throw err; 
                         }
-                    //console.log(user);          //      console.log("updated just level"); //                  req.session['flag'] = flag;
                     res.render('game.ejs',
                         {
                             user : user2,
                             question : foundquestion,
                             scenario : scenario.statement
-                            //,flag : flag
                         });
                 });
          }); } 
@@ -83,24 +67,18 @@ module.exports = function(app, passport) {
         {
 
               console.log("flag h");
-              // req.session['flag'] = null;
               Scenario.findOne({'number' : req.user.scenario},function(err, scenario) {
-                //                  foundquestion = scenario.questions[req.user.level-1];
                          if(err)
                         {
                             console.log("Error");
                         throw err; 
                         }
                 
-                    //console.log(user);
-              //      console.log("updated just level");
-  //                  req.session['flag'] = flag;
                     res.render('game.ejs',
                         {
                             user : req.user,
                             question : scenario.questions[req.user.level -1],
                             scenario : scenario.statement
-                            //,flag : flag
                         });
                 });
 
@@ -124,12 +102,6 @@ module.exports = function(app, passport) {
 //              console.log(req);
               userlevel =  user.level;
               userscenario = user.scenario;
-  //                        console.log("-----------");
-    //        console.log(req.user.level);
-      //      console.log("-----------");
-        //    console.log(req.user.scenario);
-          //              console.log("-----------");
-            //check variables from template
               var flag;
               if(userscenario == req.user.scenario && req.user.level == val)
               {
@@ -179,15 +151,10 @@ module.exports = function(app, passport) {
             {
                 console.log("Restarting scenario");
 
-               // User.findOneAndUpdate({'delegatecard' : req.user.delegatecard},{$set : {'level' :1,'pointsfromscenario' : 0}},
-                 //   function(err,user)
-                   // {
-
                         if(err) throw err;
                         req.session['flag'] = flag;
 
                             res.redirect('/game');
-                  //});
 
             }
             else
@@ -267,23 +234,13 @@ app.get('/leaderboard', function(req, res) {
         res.redirect('/');
     });
 
-
-//=======================
 //====LOGIN==============
-//=======================
         app.post('/login', passport.authenticate('local-login', {
         successRedirect : '/game', // redirect to the game
         failureRedirect : '/', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
-        //failwithError : true
     }));
-    //================================
     //======== REST OF REQUESTS ======
-    //================================
-   /* app.use(function(req, res) {
-        console.log("redirect at 205");
-    res.redirect('/');
-});  */
 app.get('*', function(req, res){
       console.log("redirect at 258");
       console.log(req.originalUrl);
