@@ -425,7 +425,7 @@ width: 150px;
 		left: 50%;
 	}
 	.formdiv form input[type="submit"]
-	{
+	{	position: 
 		padding: 5px;
 	}	
 	#signupform

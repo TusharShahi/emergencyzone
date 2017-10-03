@@ -14,7 +14,8 @@ var userSchema = mongoose.Schema({
     points : Number,
   phonenumber: Number,
    level : Number,
-   scenario : Number
+   scenario : Number,
+   pointsfromscenario : Number, 
 });
 
 // methods ======================

@@ -304,7 +304,7 @@ label {
 	font-size: 100px;
 }
 
-#submitbutton,#submitbutton2
+#submitbutton,#submitbutton2,#submitbutton3
 {
 display: inline-block;
 width: 100px;
@@ -320,6 +320,10 @@ border: #ff7a65 solid 1px;
 border-radius: 3px;
 margin: 5px auto;
 
+}
+#submitbutton3
+{
+	width: 200px;
 }
 #navbar
 {
@@ -406,6 +410,17 @@ background-color: #3d6067 !important;
 	{
 		display: none;
 	}
+}
+@media screen and (max-width: 660px)
+{
+form>div
+{
+	width: 300px;
+}
+label
+{
+	left: 15px;
+}
 }
 @media screen and (max-width: 420px)
 {

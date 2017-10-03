@@ -7,8 +7,6 @@ var Scenario = require('../app/models/scenario');
 module.exports = function(app, passport) {
 
 //app.use(express.static(__dirname+'/public'));
-
-
     // =====================================
     // HOME PAGE (with login and signup links) ========
     // =====================================
@@ -25,11 +23,8 @@ module.exports = function(app, passport) {
                     //{
                          //   while(true);
                     }
-                    ); 
-                
+                    );                 
             }
-
-
     });
 
     // ====================================
@@ -41,64 +36,137 @@ module.exports = function(app, passport) {
         failureRedirect : '/', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages req.authInfo
     }));
-
-  
     // =====================================
     // GAME ================================
     // =====================================
-
     app.get('/game',isLoggedIn,function(req,res)
     {
-        flag = req.session['flag'];
-        req.session['flag'] = 0;
+        //flag = req.session['flag'];
+        //req.session['flag'] = 0;
         if(req.user)
         {
-            //var foundquestion = "kutta";
-        Scenario.findOne({'number' : req.user.scenario},function(err, scenario) {
-              foundquestion = scenario.questions[req.user.level-1];
-            res.render('game.ejs',
-        {
-            user : req.user,
-            question : foundquestion,
-            scenario : scenario.statement,
-            flag : flag}/*,function(err,html)
-        {
-          if(err) return err;
-        }*/);
-        //console.log(res);
-        } );
-        }
-      else
-        res.redirect('/');
-        //res.render('homepage.ejs');
 
+            //var foundquestion = "kutta";
+//            User.findOne({'delegatecard' : req.user.delegatecard},function(err,user)
+  //          {   console.log(req.session['flag']);
+            console.log(req.session['flag']);
+                if(req.session['flag'] === undefined || req.session['flag'] === null)
+            {       console.log("flag nahi h");          
+              User.findOneAndUpdate(
+             {'delegatecard' : req.user.delegatecard},{$set : {pointsfromscenario: 0,level: 1}},
+                function(err,user)
+                {           console.log("udpated");
+                    if(err) throw err;
+//                console.log(user);
+                var user2 = user;
+                user2.level = 1;
+                console.log("user ka level " + user2.level);
+                 Scenario.findOne({'number' : user.scenario},function(err, scenario) {
+                                  foundquestion = scenario.questions[0];
+                                  console.log("questions1")
+                        // console.log("scenario is " + scenario);
+                         if(err)
+                        {
+                        throw err; 
+                        }
+                    //console.log(user);          //      console.log("updated just level"); //                  req.session['flag'] = flag;
+                    res.render('game.ejs',
+                        {
+                            user : user2,
+                            question : foundquestion,
+                            scenario : scenario.statement
+                            //,flag : flag
+                        });
+                });
+         }); } 
+            else
+        {
+
+              console.log("flag h");
+              // req.session['flag'] = null;
+              Scenario.findOne({'number' : req.user.scenario},function(err, scenario) {
+                //                  foundquestion = scenario.questions[req.user.level-1];
+                         if(err)
+                        {
+                            console.log("Error");
+                        throw err; 
+                        }
+                
+                    //console.log(user);
+              //      console.log("updated just level");
+  //                  req.session['flag'] = flag;
+                    res.render('game.ejs',
+                        {
+                            user : req.user,
+                            question : scenario.questions[req.user.level -1],
+                            scenario : scenario.statement
+                            //,flag : flag
+                        });
+                });
+
+        }
+    }  
+      else
+      {     console.log("yaha b");
+        res.redirect('/');
+    
+    }
     });
 
     app.post('/submitanswer',isLoggedIn,function(req,res)
     {
 
         if(req.user)
-        {
-
-            Scenario.findOne({'number' : req.user.scenario},function(err, scenario) {
+        {   var val = req.body.foo;
+            console.log(req.body.foo);
+    //        console.log(req.user.delegatecard);
+            User.findOne({'delegatecard' : req.user.delegatecard},function(err, user) {
+//              console.log(req);
+              userlevel =  user.level;
+              userscenario = user.scenario;
+  //                        console.log("-----------");
+    //        console.log(req.user.level);
+      //      console.log("-----------");
+        //    console.log(req.user.scenario);
+          //              console.log("-----------");
+            //check variables from template
+              var flag;
+              if(userscenario == req.user.scenario && req.user.level == val)
+              {
+                            console.log("koi cheating nahi");
+                            console.log(req.body.submitanswer);
+                            Scenario.findOne({'number' : req.user.scenario},function(err, scenario) {
             if(req.body.submitanswer == 'Skip')
             {
+                console.log("no answer");
                 flag = 0;
+            }
+            else if(req.body.submitanswer == 'Restart Scenario')
+            {
+                console.log("Restart");
+                flag = null;
             }
             else if(scenario.answers[req.user.level-1] == req.body.submittedanswer)
             {
-             //   console.log("correct answer");
+                console.log("correct answer");
                 flag = 3;
             }
             else
             {
+                console.log("wrong answer");
                 flag = -1;
-            }
-            if(req.user.level == 10)
+            }// });
+              if(req.user.level == 10 && req.body.submitanswer != 'Restart Scenario')
                 {            
-
+            
+                var p = req.user.pointsfromscenario;
+                if(flag!=null)
+                {
+                    p = p + flag;
+                }
+                console.log("next scenario");
                 User.findOneAndUpdate(
-                {'delegatecard' : req.user.delegatecard},{$inc : {points: flag,scenario : 1},$set : {level: 1}},
+                {'delegatecard' : req.user.delegatecard},{$inc : {'points': p,'scenario' : 1},$set : {'level': 1,'pointsfromscenario' : 0}},
                 function(err,user)
                 {
                     if(err) throw err;
@@ -107,24 +175,54 @@ module.exports = function(app, passport) {
             
                 });
                 }
+            else if(req.user.level == 10)
+            {
+                console.log("Restarting scenario");
+
+               // User.findOneAndUpdate({'delegatecard' : req.user.delegatecard},{$set : {'level' :1,'pointsfromscenario' : 0}},
+                 //   function(err,user)
+                   // {
+
+                        if(err) throw err;
+                        req.session['flag'] = flag;
+
+                            res.redirect('/game');
+                  //});
+
+            }
             else
                 {
                 User.findOneAndUpdate(
-                {'delegatecard' : req.user.delegatecard},{$inc : {points: flag,level: 1}},function(err,user)
+                {'delegatecard' : req.user.delegatecard},{$inc : {'pointsfromscenario': flag,'level': 1}},function(err,user)
                 {
 
                     if(err) throw err;
                     //console.log(user);
-                    //console.log("updated just level");
+                    console.log("flag is "  + flag);
+                    console.log("updated just level");
                     req.session['flag'] = flag;
+                    req.session['level'] = req.user.level;
                     res.redirect('/game');
                 });
              
                 }
-            } );
+                    });
         }
         else
-        {
+        {       console.log("chearing");
+                console.log("sidha redirect");
+                res.redirect('/game');
+        }
+                
+
+              
+
+        //console.log(res);
+        } );
+
+        }
+        else
+        {   console.log("redirect at 195");
             res.redirect('/');
         }
 
@@ -154,6 +252,17 @@ app.get('/leaderboard', function(req, res) {
     // LOGOUT ==============================
     // =====================================
     app.get('/logout', function(req, res) {
+        req.session['flag'] = null;
+        console.log(req.user);
+
+         User.findOneAndUpdate(
+             {'delegatecard' : req.user.delegatecard},{$set : {pointsfromscenario: 0,level: 1}},
+                function(err,user)
+                {
+                    if(err) throw err;
+//                console.log(user);
+                 });
+                 
         req.logout();
         res.redirect('/');
     });
@@ -171,10 +280,17 @@ app.get('/leaderboard', function(req, res) {
     //================================
     //======== REST OF REQUESTS ======
     //================================
-    app.use(function(req, res) {
-    res.redirect('/')
-});    
-};
+   /* app.use(function(req, res) {
+        console.log("redirect at 205");
+    res.redirect('/');
+});  */
+app.get('*', function(req, res){
+      console.log("redirect at 258");
+      console.log(req.originalUrl);
+      if(req.originalUrl != '/favicon.ico')
+  res.redirect('/');
+});  
+}; 
 
 function isLoggedIn(req, res, next) {
 

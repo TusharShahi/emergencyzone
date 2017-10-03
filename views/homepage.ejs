@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900" rel="stylesheet">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="home.css">
 	<script type="text/javascript">
 	//(function() {
@@ -242,6 +243,7 @@ for (var i = 0; i < forms.length; i++) {
 	<h3 class="rule">Each scenario will have 10 questions.</h3>
    	<h3 class="rule">Each question will have 4 options, out of which only one will be correct.</h3>
 	<h3 class="rule">A participant can leave the game only after that particular scenario which he is attempting gets over lest that particular scenario will get restarted when resumes the game.</h3>
+		<h3 class="rule">A participant can skip or save a question. At the 10th level of every scenario he gets the opportunity to restart the scenario.</h3>
 	<h3 class="rule">The point system is as follows:
 		<br><h4 class="rule">+3 points for correct answers</h4>
 		<br><h4 class="rule">-1 points for wrong answers</h4>
@@ -271,7 +273,7 @@ for (var i = 0; i < forms.length; i++) {
 		<div><label>Registration Number :</label><input type="text" name="registrationnumber" id="regno" onblur="numbersonly('regno')" required /> <p id="regerror" class="hide">Looks invalid</p><br> </div>
 		<div><label>Password :</label><input type="password" name="password" id="p1" onblur="checklength('p1')" required /> <p id="p1error" class="hide">Insufficient Length</p> <br> </div>
 		<div><label>Confirm Password :</label><input type="password" name="passwordconfirm" id="p2" onblur="passowrdcheck()" required /><p id="passwordmismatch" class="hide">Mismatch</p> <br> </div> 
-        <div><input type="submit"> </div>
+        <div><input type="submit" value="Submit"> </div>
     
 	</form>
 	</div>
@@ -283,7 +285,7 @@ for (var i = 0; i < forms.length; i++) {
 	
 		<div><label>Name :</label> <input type="text" name="username" required /> <br></div>
 		<div><label>Password :</label><input type="password" name="password" required /> <br> </div>
-        <div><input type="submit"> </div>
+        <div><input type="submit" value="Submit"> </div>
     
 	</form>
 	</div>
