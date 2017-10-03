@@ -61,7 +61,7 @@ module.exports = function(app, passport) {
                             user : user2,
                             question : foundquestion,
                             scenario : scenario.statement,
-                            finsihed: 0
+                            finished: 0
                         });
                 });
          }); } 
@@ -95,7 +95,7 @@ module.exports = function(app, passport) {
                             user : req.user,
                             question : scenario.questions[req.user.level -1],
                             scenario : scenario.statement,
-                            finsihed: 0
+                            finished: 0
                         });
                 });
               }
