@@ -6,7 +6,10 @@ background-color: #c0f1b3;
 margin: 0;
 padding: 20px;
 }
-
+input
+{
+	-webkit-appearance:none;
+}
 a
 {
 	text-decoration: none;

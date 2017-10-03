@@ -11,7 +11,10 @@ margin: 0;
 padding: 0;
 text-align: center;
 }
-
+input
+{
+	-webkit-appearance:none;
+}
 a
 {
 	text-decoration: none;
