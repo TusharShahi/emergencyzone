@@ -359,6 +359,10 @@ background-color: #3d6067 !important;
 	{
 		font-size: 12px;
 	}
+	#rulesscreen h2
+{
+		font-size: 32px;
+}
 	#maindiv>h4
 	{
 		margin-top: 60px;

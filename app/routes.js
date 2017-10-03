@@ -36,7 +36,7 @@ module.exports = function(app, passport) {
     app.get('/game',isLoggedIn,function(req,res)
     {
         if(req.user)
-        {
+        {   
 
             console.log(req.session['flag']);
                 if(req.session['flag'] === undefined || req.session['flag'] === null)

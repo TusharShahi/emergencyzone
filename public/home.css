@@ -387,6 +387,10 @@ width: 150px;
 		display: block;
 		margin-top: 20px;
 	}
+#rulesscreen h2
+{
+		font-size: 32px;
+}
 	.formdiv
 	{
 		display: block;
@@ -510,6 +514,7 @@ width: 150px;
 
 #rulesscreen h2
 {	margin: 2px;
+
 }
 }
 @media screen and (max-width: 550px)
