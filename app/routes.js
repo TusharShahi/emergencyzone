@@ -39,7 +39,7 @@ module.exports = function(app, passport) {
         {   
 
             console.log(req.session['flag']);
-                if(req.session['flag'] === undefined || req.session['flag'] === null)
+                if(!(req.session['flag'] === undefined || req.session['flag'] === null))
             {       console.log("flag nahi h");          
               User.findOneAndUpdate(
              {'delegatecard' : req.user.delegatecard},{$set : {pointsfromscenario: 0,level: 1}},
@@ -60,7 +60,8 @@ module.exports = function(app, passport) {
                         {
                             user : user2,
                             question : foundquestion,
-                            scenario : scenario.statement
+                            scenario : scenario.statement,
+                            finsihed: 0
                         });
                 });
          }); } 
@@ -68,6 +69,20 @@ module.exports = function(app, passport) {
         {
 
               console.log("flag h");
+              if(req.user.scenario == 36)
+              {
+
+                    res.render('game.ejs',
+                    {
+                            user: req.user,
+                            finished : 1
+
+                    }
+                        );
+              
+              }
+              else
+              {
               Scenario.findOne({'number' : req.user.scenario},function(err, scenario) {
                          if(err)
                         {
@@ -79,10 +94,11 @@ module.exports = function(app, passport) {
                         {
                             user : req.user,
                             question : scenario.questions[req.user.level -1],
-                            scenario : scenario.statement
+                            scenario : scenario.statement,
+                            finsihed: 0
                         });
                 });
-
+              }
         }
     }  
       else
@@ -222,13 +238,13 @@ app.get('/leaderboard', function(req, res) {
     app.get('/logout', function(req, res) {
         req.session['flag'] = null;
 
-         User.findOneAndUpdate(
+         /*User.findOneAndUpdate(
              {'delegatecard' : req.user.delegatecard},{$set : {pointsfromscenario: 0,level: 1}},
                 function(err,user)
                 {
                     if(err) throw err;
 //                console.log(user);
-                 });
+                 }); */
                  
         req.logout();
         res.redirect('/');

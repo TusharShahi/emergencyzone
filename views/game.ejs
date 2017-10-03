@@ -72,7 +72,11 @@
 	}
 //var currentlevel = 	document.getElementById("levelid").value;
 </script> 
-<body>
+<body
+<% if(finished==1) { %>
+style="background-color: #77A6F7;"
+<% } %>
+>
 	<div class="rules" id="rulesscreen">
 	<a id="closebutton" onclick="func()">&times;</a>
 	<h2>RULES</h2>
@@ -90,6 +94,19 @@
 	</div>
 
 <div id="maindiv">
+<% if(finished==1) {%>
+<div id="overdiv">
+
+<h3>Thank You for playing emergency zone.</h3>
+<h5>You have a total of 
+<%= user.points %>
+ points.	
+</h5>
+
+<footer><p>Developed with <span>&#9829;</span> by Tushar Shahi</p></footer>
+</div>
+
+<% } else { %>
 <div id="usercard">
 <div><h3><%= user.local.username %></h3></div>
 <div>
@@ -155,24 +172,8 @@
 </div>
 
 </div>
+<% } %>
 </div>
-<script>
-	function waitForElement(elementId, callBack){
-  window.setTimeout(function(){
-    var element = document.getElementById(elementId);
-    if(element){
-    callBack(elementId, element);
-    }else{
-      waitForElement(elementId, callBack);
-    }
-  },500)
-}
 
-waitForElement('pointsnotification',function()
-	{
-		  document.getElementById('pointsnotification').className += "hide";
-    	
-	});
-</script>
 </body>
 </html>

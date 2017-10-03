@@ -18,6 +18,50 @@ a
 	text-decoration: none;
 	color: inherit;
 }
+#overdiv
+{
+	margin-top: 200px;
+}
+#overdiv h5,#overdiv h3
+{
+text-align: center;
+margin: 20px auto;
+}
+#overdiv h5
+{
+color: #ddd;	
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+	letter-spacing: 1px;
+	font-size: 200%;
+}
+#overdiv h3
+{
+	color: #fff;
+font-family: 'Lato', sans-serif;
+font-weight: 900;
+font-size: 300%;
+}
+footer
+{
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	background-color: #fff;
+	width: auto;
+}
+footer p
+{	margin: 2px auto;
+	text-align: center;
+	font-family: 'Lato';
+	font-size: 14px;
+color: #666;
+}
+footer span
+{
+	color: tomato;
+}
 #maindiv>h4
 {	color: #666;
 	font-family: 'Arvo', serif;
@@ -421,7 +465,14 @@ background-color: #3d6067 !important;
 	{
 		display: none;
 	}
-
+	#overdiv h3
+	{
+font-size: 30px;
+	}
+	#overdiv h5
+	{
+		font-size: 16px;
+	}
 }
 @media screen and (max-width: 660px)
 {
@@ -449,4 +500,13 @@ form>div>div
 {
 	padding: 4px;
 }
+#overdiv h3
+	{
+font-size: 24px;
+	}
+	#overdiv h5
+	{
+		font-size: 12px;
+		letter-spacing: 0.2px;
+	}
 }
