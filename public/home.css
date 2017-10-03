@@ -14,6 +14,8 @@ text-align: center;
 input
 {
 	-webkit-appearance:none;
+-webkit-border-radius:0; 
+    border-radius:0;
 }
 a
 {
@@ -185,6 +187,10 @@ position: relative;
 	right: -80px;
 	margin: 0px;
 }
+form
+{
+	position: relative;
+}
 .formdiv form div
 {
 	width: 80%;
@@ -221,6 +227,7 @@ margin-left: 5px;
 width: 150px;
 right: 50px;
 }
+
 input:-webkit-autofill
 {
 	background-color: #fff !important;
@@ -245,7 +252,20 @@ input:-webkit-autofill
 	border: 0px;
 	padding: 10px;
 	right: -60px;
+	position: absolute;
+	width: 100px;
+	left: 50%;
+	margin-left: -50px;
 }
+#submitdiv1,#submitdiv2
+{
+	position: absolute;
+	left: 0%;
+	width: 100%;
+	margin-left: 0px;
+
+}
+
 #loginform label
 {
 	margin-left: 30px;
@@ -352,7 +372,7 @@ width: 150px;
 		padding: 0px;
 
 	}
-	.formdiv input[type="text"],.formdiv input[type="password"]
+	.formdiv form input[type="text"],.formdiv form input[type="password"]
 	{
 	right: 25px;
 	width: 100px;
@@ -372,21 +392,25 @@ width: 150px;
 		width: 600px;
 		margin: 10px auto;
 		padding: 10px 10px;
+		position: relative;
+
+				padding-bottom: 30px;
 	}
 	.formdiv form
 	{
 		width: 80%;
 		text-align: center;
 		margin-left: 20px; 
+	position: static;
 	}
 	.formdiv form div
 	{
 		width: 100%;
 	}
-	.formdiv input[type="text"],.formdiv input[type="password"]
+	.formdiv form input[type="text"],.formdiv form input[type="password"]
 	{
-	right: 60px;
-	width: 150px;
+	right: 80px;
+	width: 120px;
 	}
 .formdiv label 
 	{
@@ -428,35 +452,41 @@ width: 150px;
 		left: 50%;
 	}
 	.formdiv form input[type="submit"]
-	{	position: 
-		padding: 5px;
-				position: static;
+	{ 
+		padding: 10px;
 	}	
 	#signupform
 	{
 		height: 280px;
 	}
+	#submitdiv1
+	{
+		margin-bottom: 20px;
+	}	
 }
 @media screen and (max-width: 660px)
 {
 	.formdiv
 	{
 		width: 90%;
+		padding-bottom: 20px;
 	}
 	.formdiv form
 	{
 		width: 90%;
 		text-align: center;
 		margin-left: 0px; 
+	
 	}
 	.formdiv form div
 	{
 		width: 100%;
 	}
-	.formdiv input[type="text"],.formdiv input[type="password"]
+	.formdiv form input[type="text"],.formdiv form input[type="password"]
 	{
-	right: 80px;
+	right: 120px;
 	width: 80px;
+	font-size: 12px;
 	}
 .formdiv label 
 	{
@@ -472,11 +502,25 @@ width: 150px;
 		.formdiv form input[type="submit"]
 	{
 		right: -30px;
+		padding: 5px;
+		width: 60px;
+		margin-left: -30px;
 	}	
 
 #rulesscreen h2
 {	margin: 8px;
 }
+}
+@media screen and (max-width: 550px)
+{
+
+	.formdiv form input[type="text"],.formdiv form input[type="password"]
+	{
+	right: 100px;
+	width: 70px;
+	}
+
+
 }
 @media screen and (max-width: 420px)
 {
@@ -512,7 +556,8 @@ width: 150px;
 	.formdiv form input[type="text"],.formdiv form input[type="password"]
 	{
 	right: 70px;
-	width: 80px;
+	width: 60px;
+	font-size: 10px;
 	}
 .formdiv label 
 	{
@@ -522,13 +567,14 @@ width: 150px;
 
 	.formdiv p
 	{
-		font-size: 12px;
+		font-size: 10px;
 		right: -30px;
 	}
 		.formdiv form input[type="submit"]
 	{
 		margin-top: 10px;
 		right: -30px;
+
 	}	
 	#loginform label
 	{

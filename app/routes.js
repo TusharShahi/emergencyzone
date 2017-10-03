@@ -1,3 +1,4 @@
+
 var User            = require('../app/models/user');
 //var Question = require('../app/models/question');
 var express = require('express');
@@ -220,7 +221,6 @@ app.get('/leaderboard', function(req, res) {
     // =====================================
     app.get('/logout', function(req, res) {
         req.session['flag'] = null;
-        console.log(req.user);
 
          User.findOneAndUpdate(
              {'delegatecard' : req.user.delegatecard},{$set : {pointsfromscenario: 0,level: 1}},

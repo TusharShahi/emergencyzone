@@ -273,7 +273,7 @@ for (var i = 0; i < forms.length; i++) {
 		<div><label>Registration Number :</label><input type="text" name="registrationnumber" id="regno" onblur="numbersonly('regno')" required /> <p id="regerror" class="hide">Looks invalid</p><br> </div>
 		<div><label>Password :</label><input type="password" name="password" id="p1" onblur="checklength('p1')" required /> <p id="p1error" class="hide">Insufficient Length</p> <br> </div>
 		<div><label>Confirm Password :</label><input type="password" name="passwordconfirm" id="p2" onblur="passowrdcheck()" required /><p id="passwordmismatch" class="hide">Mismatch</p> <br> </div> 
-        <div><input type="submit" value="Submit"> </div>
+        <div id="submitdiv1"><input type="submit" value="Submit"> </div>
     
 	</form>
 	</div>
@@ -285,7 +285,7 @@ for (var i = 0; i < forms.length; i++) {
 	
 		<div><label>Name :</label> <input type="text" name="username" required /> <br></div>
 		<div><label>Password :</label><input type="password" name="password" required /> <br> </div>
-        <div><input type="submit" value="Submit"> </div>
+        <div id="submitdiv2"><input type="submit" value="Submit"> </div>
     
 	</form>
 	</div>
