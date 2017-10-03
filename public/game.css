@@ -421,6 +421,10 @@ background-color: #3d6067 !important;
 }
 @media screen and (max-width: 660px)
 {
+#rulesscreen h2
+{
+	margin: 2px;
+}
 form>div
 {
 	width: 300px;
