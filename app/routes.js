@@ -39,7 +39,7 @@ module.exports = function(app, passport) {
         {   
 
             console.log(req.session['flag']);
-                if(!(req.session['flag'] === undefined || req.session['flag'] === null))
+                if(req.session['flag'] === undefined || req.session['flag'] === null)
             {       console.log("flag nahi h");          
               User.findOneAndUpdate(
              {'delegatecard' : req.user.delegatecard},{$set : {pointsfromscenario: 0,level: 1}},
