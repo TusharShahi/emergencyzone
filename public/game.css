@@ -407,6 +407,14 @@ background-color: #3d6067 !important;
 {
 		font-size: 32px;
 }
+.rules h3
+{
+font-size: 18px;
+}
+.rules h4
+{
+	font-size: 14px;
+}
 	#maindiv>h4
 	{
 		margin-top: 60px;

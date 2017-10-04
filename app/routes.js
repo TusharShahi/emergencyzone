@@ -38,11 +38,11 @@ module.exports = function(app, passport) {
         if(req.user)
         {   
 
-            console.log(req.session['flag']);
+            //console.log(req.session['flag']);
                 if(req.session['flag'] === undefined || req.session['flag'] === null)
             {
 
-                if(req.user.scenario == 37)
+                if(req.user.scenario == 35)
               {
 
                     res.render('game.ejs',
@@ -56,7 +56,7 @@ module.exports = function(app, passport) {
               }
               else
               {
-                   console.log("flag nahi h");          
+                //   console.log("flag nahi h");          
               
               User.findOneAndUpdate(
              {'delegatecard' : req.user.delegatecard},{$set : {pointsfromscenario: 0,level: 1}},
@@ -68,7 +68,7 @@ module.exports = function(app, passport) {
                 console.log("user ka level " + user2.level);
                  Scenario.findOne({'number' : user.scenario},function(err, scenario) {
                                   foundquestion = scenario.questions[0];
-                                  console.log("questions1")
+              //                    console.log("questions1")
                          if(err)
                         {
                         throw err; 
@@ -85,8 +85,8 @@ module.exports = function(app, passport) {
             else
         {
 
-              console.log("flag h");
-              if(req.user.scenario == 37)
+            //  console.log("flag h");
+              if(req.user.scenario == 35)
               {
 
                     res.render('game.ejs',
@@ -103,7 +103,7 @@ module.exports = function(app, passport) {
               Scenario.findOne({'number' : req.user.scenario},function(err, scenario) {
                          if(err)
                         {
-                            console.log("Error");
+          //                  console.log("Error");
                         throw err; 
                         }
                 
@@ -119,7 +119,7 @@ module.exports = function(app, passport) {
         }
     }  
       else
-      {     console.log("yaha b");
+      { //    console.log("yaha b");
         res.redirect('/');
     
     }
@@ -130,7 +130,7 @@ module.exports = function(app, passport) {
 
         if(req.user)
         {   var val = req.body.foo;
-            console.log(req.body.foo);
+ //           console.log(req.body.foo);
     //        console.log(req.user.delegatecard);
             User.findOne({'delegatecard' : req.user.delegatecard},function(err, user) {
 //              console.log(req);
@@ -139,27 +139,27 @@ module.exports = function(app, passport) {
               var flag;
               if(userscenario == req.user.scenario && req.user.level == val)
               {
-                            console.log("koi cheating nahi");
-                            console.log(req.body.submitanswer);
+                  //          console.log("koi cheating nahi");
+                    //        console.log(req.body.submitanswer);
                             Scenario.findOne({'number' : req.user.scenario},function(err, scenario) {
             if(req.body.submitanswer == 'Skip')
             {
-                console.log("no answer");
+                //console.log("no answer");
                 flag = 0;
             }
             else if(req.body.submitanswer == 'Restart Scenario')
             {
-                console.log("Restart");
+                //console.log("Restart");
                 flag = null;
             }
             else if(scenario.answers[req.user.level-1] == req.body.submittedanswer)
             {
-                console.log("correct answer");
+                //console.log("correct answer");
                 flag = 3;
             }
             else
             {
-                console.log("wrong answer");
+                //console.log("wrong answer");
                 flag = -1;
             }// });
               if(req.user.level == 10 && req.body.submitanswer != 'Restart Scenario')
@@ -170,7 +170,7 @@ module.exports = function(app, passport) {
                 {
                     p = p + flag;
                 }
-                console.log("next scenario");
+              //  console.log("next scenario");
                 User.findOneAndUpdate(
                 {'delegatecard' : req.user.delegatecard},{$inc : {'points': p,'scenario' : 1},$set : {'level': 1,'pointsfromscenario' : 0}},
                 function(err,user)
@@ -183,7 +183,7 @@ module.exports = function(app, passport) {
                 }
             else if(req.user.level == 10)
             {
-                console.log("Restarting scenario");
+            //    console.log("Restarting scenario");
 
                         if(err) throw err;
                         req.session['flag'] = flag;
@@ -199,8 +199,8 @@ module.exports = function(app, passport) {
 
                     if(err) throw err;
                     //console.log(user);
-                    console.log("flag is "  + flag);
-                    console.log("updated just level");
+                  //  console.log("flag is "  + flag);
+                    //console.log("updated just level");
                     req.session['flag'] = flag;
                     req.session['level'] = req.user.level;
                     res.redirect('/game');
@@ -210,8 +210,8 @@ module.exports = function(app, passport) {
                     });
         }
         else
-        {       console.log("chearing");
-                console.log("sidha redirect");
+        {      // console.log("chearing");
+                //console.log("sidha redirect");
                 res.redirect('/game');
         }
                 
@@ -223,7 +223,7 @@ module.exports = function(app, passport) {
 
         }
         else
-        {   console.log("redirect at 195");
+        { //  console.log("redirect at 195");
             res.redirect('/');
         }
 
@@ -275,8 +275,8 @@ app.get('/leaderboard', function(req, res) {
     }));
     //======== REST OF REQUESTS ======
 app.get('*', function(req, res){
-      console.log("redirect at 258");
-      console.log(req.originalUrl);
+    //  console.log("redirect at 258");
+      //console.log(req.originalUrl);
       if(req.originalUrl != '/favicon.ico')
   res.redirect('/');
 });  
