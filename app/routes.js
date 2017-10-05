@@ -140,26 +140,27 @@ module.exports = function(app, passport) {
               if(userscenario == req.user.scenario && req.user.level == val)
               {
                   //          console.log("koi cheating nahi");
-                    //        console.log(req.body.submitanswer);
+                            console.log(req.body.submitanswer);
+                    console.log(req.body.submittedanswer);
                             Scenario.findOne({'number' : req.user.scenario},function(err, scenario) {
             if(req.body.submitanswer == 'Skip')
             {
-                //console.log("no answer");
+                console.log("no answer");
                 flag = 0;
             }
             else if(req.body.submitanswer == 'Restart Scenario')
             {
-                //console.log("Restart");
+                console.log("Restart");
                 flag = null;
             }
             else if(scenario.answers[req.user.level-1] == req.body.submittedanswer)
             {
-                //console.log("correct answer");
+                console.log("correct answer");
                 flag = 3;
             }
             else
             {
-                //console.log("wrong answer");
+                console.log("wrong answer");
                 flag = -1;
             }// });
               if(req.user.level == 10 && req.body.submitanswer != 'Restart Scenario')
