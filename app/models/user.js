@@ -16,6 +16,7 @@ var userSchema = mongoose.Schema({
    level : Number,
    scenario : Number,
    pointsfromscenario : Number, 
+   finishtime : Number
 });
 
 // methods ======================

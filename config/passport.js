@@ -138,6 +138,7 @@ module.exports = function(passport) {
                 newUser.level = 1;
                 newUser.scenario = 1;
                 newUser.pointfromscenario = 0;
+                newUser.finishtime = 0;
              // save the user
                 newUser.save(function(err) {
                     if (err)

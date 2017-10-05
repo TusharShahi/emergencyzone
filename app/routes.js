@@ -170,7 +170,27 @@ module.exports = function(app, passport) {
                 {
                     p = p + flag;
                 }
-              //  console.log("next scenario");
+              
+
+                console.log("next scenario");
+                if(req.user.scenario == 34)
+                {
+                
+                        var time = Date.now();
+                         User.findOneAndUpdate(
+                {'delegatecard' : req.user.delegatecard},{$inc : {'points': p,'scenario' : 1},$set : {'level': 1,'pointsfromscenario' : 0, 'finishtime' : time}},
+                function(err,user)
+                {
+                    if(err) throw err;
+                    req.session['flag'] = flag;
+                    res.redirect('/game');
+            
+                });
+
+
+                }
+                else
+                {
                 User.findOneAndUpdate(
                 {'delegatecard' : req.user.delegatecard},{$inc : {'points': p,'scenario' : 1},$set : {'level': 1,'pointsfromscenario' : 0}},
                 function(err,user)
@@ -181,9 +201,11 @@ module.exports = function(app, passport) {
             
                 });
                 }
+                }
             else if(req.user.level == 10)
             {
             //    console.log("Restarting scenario");
+
 
                         if(err) throw err;
                         req.session['flag'] = flag;
