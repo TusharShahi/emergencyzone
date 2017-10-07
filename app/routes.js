@@ -7,7 +7,18 @@ var Scenario = require('../app/models/scenario');
 
 module.exports = function(app, passport) {
 
+    // GAME CONCLUSION
+    app.get('*',function(req,res)
+    {
+
+        res.render('gameover.ejs');
+
+
+    });
+
+
     // HOME PAGE (with login and signup links) ========
+
     app.get('/',function(req, res) {
       if(req.user)
       {

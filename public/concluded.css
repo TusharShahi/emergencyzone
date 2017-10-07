@@ -1,0 +1,47 @@
+body
+{
+
+background-color: #c0f1b3;
+margin: 0;
+padding: 20px;
+padding-top: 10%;
+}
+
+h2
+{
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+	text-transform: uppercase;
+	
+	font-size: 2.5em;
+}
+
+h3
+{
+	color: #666;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 300;
+	text-align: center;
+}
+
+footer
+{
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	background-color: #fff;
+	width: auto;
+}
+footer p
+{	margin: 2px auto;
+	text-align: center;
+	font-family: 'Lato';
+	font-size: 14px;
+color: #666;
+}
+footer span
+{
+	color: tomato;
+}
+
